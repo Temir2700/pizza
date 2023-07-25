@@ -1,38 +1,104 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Gilroy';
+  src: url("./assets/fonts/Gilroy-Semibold.ttf");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Merriweather';
+  src: url("./assets/fonts/Merriweather-Black.ttf");
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  margin: 0;
+  padding: 0;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+body{
+  background-color: #191411;
+  font-family: 'Gilroy', sans-serif;
   color: white;
+  user-select: none;
 }
-
-.App-link {
-  color: #61dafb;
+.container{
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.common-title{
+  font-size: 64px;
+  line-height: 80px;
+  text-align: center;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-family: 'Merriweather', sans-serif;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+.admin-page{
+  overflow: hidden;
+  background-image: url("./assets/images/main_bg.png");
+  background-position: top center;
+  padding-bottom: 380px;
+}
+.pizza-admin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn{
+  background: linear-gradient(95.61deg, #DA8023 0%, #E2B438 100%);
+  border-radius: 8px;
+  width: 100px;
+  height: 32px;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  font-size: 14px;
+  color: #191411;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.btn:hover{
+  background: linear-gradient(95.61deg, #ac6115 0%, #9e7a19 100%);
+}
+.btn-add{
+  margin-left: 20px;
+}
+.pizza-item{
+  margin: 0 auto 20px;
+  width: 700px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  border: 1px solid #9E7A19FF;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.pizza-item-left{
+  display: flex;
+  align-items: center;
+}
+.pizza-item-right{
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pizza-img{
+  width: 150px;
+  height: 150px;
+}
+.pizza-price{
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: 900;
+}
+.pizza-title{
+  font-size: 25px;
+  margin-left: 20px;
+}
+.btn-edit{
+  margin-right: 10px;
 }
