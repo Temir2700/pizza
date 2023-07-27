@@ -19,7 +19,7 @@ const PizzaItem: React.FC<Props> = ({pizza}) => {
             <div className="pizza-item-right">
                 <span className="pizza-price">{pizza.price} KGS</span>
                 <div>
-                    <NavLink  to={'/admin/edit' + pizza.id} className="btn btn-edit">Edit</NavLink>
+                    <NavLink  to={'/admin/edit/' + pizza.id} className="btn btn-edit">Edit</NavLink>
                     <button className="btn btn-delete">Delete</button>
                 </div>
             </div>

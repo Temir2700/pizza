@@ -4,6 +4,7 @@ import {Routes, Route} from "react-router-dom";
 import AdminPage from "./containers/AdminPage/AdminPage";
 import PizzasPage from "./containers/PizzasPage/PizzasPage";
 import PizzaAdd from "./containers/PizzaAdd/PizzaAdd";
+import PizzaEdit from "./containers/PizzaEdit/PizzaEdit";
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
       <Route path="/admin/new-pizza" element={(
           <PizzaAdd/>
       )}/>
+     <Route path="admin/edit/:id" element={(
+         <PizzaEdit/>
+     )}/>
     </Routes>
   );
 };

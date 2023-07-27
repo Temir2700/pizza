@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useAppDispatch} from "../../app/hook";
 import {useSelector} from "react-redux";
 import {RootState} from "../../app/store";
@@ -7,11 +7,13 @@ import Spinner from "../../components/Spinner/Spinner";
 import PizzaItem from "./PizzaItem";
 import {IPizza} from "../../types";
 import {NavLink} from "react-router-dom";
+import {updateOnePizza} from "../../store/pizzaSlice";
 
 const Pizza = () => {
     const dispatch = useAppDispatch();
     const items = useSelector((state: RootState) => state.pizzas.items);
     const pizzasLoading = useSelector((state: RootState) => state.pizzas.fetchLoading);
+    const pizza = useSelector((state: RootState) => state.pizzas.onePizza);
 
 
     let pizzas: React.ReactNode = <Spinner/>
@@ -24,9 +26,17 @@ const Pizza = () => {
             />
         ))
     }
-    useEffect(() => {
-        dispatch(fetchPizzas());
+    const checkOnePizza = useCallback(async () => {
+            await dispatch(updateOnePizza());
     }, [dispatch]);
+
+    useEffect( () => {
+        dispatch(fetchPizzas());
+        if(pizza !== null) {
+            void checkOnePizza();
+        }
+
+    }, [dispatch, checkOnePizza, pizza]);
 
     return (
         <>

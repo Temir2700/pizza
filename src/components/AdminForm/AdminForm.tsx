@@ -28,7 +28,7 @@ const AdminForm: React.FC<Props> = ({onSubmit, isEdit, existingPizza = initialSt
         }));
     };
 
-    const onFormSubmit = (e: React.FormEvent) => {
+    const onFormSubmit =  (e: React.FormEvent) => {
         e.preventDefault();
 
         if(newPizza.image !== ''  && newPizza.title !== '' && newPizza.price !== '') {

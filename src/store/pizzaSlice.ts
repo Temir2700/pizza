@@ -1,17 +1,23 @@
-import {IPizza} from "../types";
+import {IPizza, IPizzaMutation} from "../types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createPizza, fetchPizzas} from "./pizzaThunk";
+import {createPizza, fetchPizza, fetchPizzas, fetchUpdatePizza} from "./pizzaThunk";
 
 interface PizzasState {
     items: IPizza[];
+    onePizza: IPizzaMutation | null;
     fetchLoading: boolean;
     createLoading: boolean;
+    fetchOneLoading: boolean;
+    updateLoading: boolean;
 }
 
 const initialState: PizzasState = {
     items: [],
+    onePizza: null,
     fetchLoading: false,
     createLoading: false,
+    fetchOneLoading: false,
+    updateLoading: false,
 };
 
 const pizzasSlice = createSlice( {
@@ -35,6 +41,9 @@ const pizzasSlice = createSlice( {
                 state.items = newPizzas;
             });
         },
+        updateOnePizza: (state) => {
+            state.onePizza = null;
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchPizzas.pending, (state) => {
@@ -56,10 +65,30 @@ const pizzasSlice = createSlice( {
         builder.addCase(createPizza.rejected, (state) => {
             state.createLoading = false;
         });
+        builder.addCase(fetchPizza.pending, (state) => {
+            state.fetchOneLoading = true;
+        });
+        builder.addCase(fetchPizza.fulfilled, (state, {payload: pizza}) => {
+            state.onePizza = pizza;
+            state.fetchOneLoading = false;
+        });
+        builder.addCase(fetchPizza.rejected, (state) => {
+            state.fetchOneLoading = false;
+        });
+        builder.addCase(fetchUpdatePizza.pending, (state) => {
+            state.updateLoading = true;
+        });
+        builder.addCase(fetchUpdatePizza.fulfilled, (state) => {
+            state.updateLoading = false;
+        });
+        builder.addCase(fetchUpdatePizza.rejected, (state) => {
+            state.updateLoading = false;
+        });
     }
 });
 
 export const pizzasReducer = pizzasSlice.reducer;
 export const {
-    updatePizza
+    updatePizza,
+    updateOnePizza
 } = pizzasSlice.actions;
