@@ -1,15 +1,17 @@
 import {IPizza} from "../types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {fetchPizzas} from "./pizzaThunk";
+import {createPizza, fetchPizzas} from "./pizzaThunk";
 
 interface PizzasState {
     items: IPizza[];
     fetchLoading: boolean;
+    createLoading: boolean;
 }
 
 const initialState: PizzasState = {
     items: [],
     fetchLoading: false,
+    createLoading: false,
 };
 
 const pizzasSlice = createSlice( {
@@ -44,6 +46,15 @@ const pizzasSlice = createSlice( {
         });
         builder.addCase(fetchPizzas.rejected, (state) => {
             state.fetchLoading = false;
+        });
+        builder.addCase(createPizza.pending, (state) => {
+            state.createLoading = true;
+        });
+        builder.addCase(createPizza.fulfilled, (state) => {
+            state.createLoading = false;
+        });
+        builder.addCase(createPizza.rejected, (state) => {
+            state.createLoading = false;
         });
     }
 });

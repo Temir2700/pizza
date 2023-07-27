@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axiosApi from "../axiosApi";
-import {IApiPizza, IPizza} from "../types";
+import {IApiPizza, IPizza, TApiPizza} from "../types";
 import {AppDispatch} from "../app/store";
 import {updatePizza} from "./pizzaSlice";
 
@@ -22,5 +22,12 @@ export const fetchPizzas = createAsyncThunk<IPizza[], undefined, { dispatch: App
 
         thunkAPI.dispatch(updatePizza(newPizzas));
         return newPizzas;
+    }
+);
+
+export const createPizza = createAsyncThunk<void, TApiPizza>(
+    'pizzas/create',
+    async (pizza) => {
+        await axiosApi.post('/pizzas.json', pizza);
     }
 );

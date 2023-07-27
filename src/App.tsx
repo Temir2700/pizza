@@ -3,6 +3,7 @@ import './App.css';
 import {Routes, Route} from "react-router-dom";
 import AdminPage from "./containers/AdminPage/AdminPage";
 import PizzasPage from "./containers/PizzasPage/PizzasPage";
+import PizzaAdd from "./containers/PizzaAdd/PizzaAdd";
 
 const App = () => {
   return (
@@ -14,6 +15,9 @@ const App = () => {
               <PizzasPage/>
           }/>
       </Route>
+      <Route path="/admin/new-pizza" element={(
+          <PizzaAdd/>
+      )}/>
     </Routes>
   );
 };

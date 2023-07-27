@@ -1,11 +1,14 @@
 import React from 'react';
+import './BtnSpinner.css';
 
 const BtnSpinner = () => {
     return (
-        <>
-            <span className="spinner-border spinner-border-sm me-2"></span>
-            <span className="visually-hidden">Loading...</span>
-        </>
+        <div className="lds-ring-btn">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {IPizza} from "../../types";
+import {NavLink} from "react-router-dom";
 
 interface Props {
     pizza: IPizza;
@@ -18,7 +19,7 @@ const PizzaItem: React.FC<Props> = ({pizza}) => {
             <div className="pizza-item-right">
                 <span className="pizza-price">{pizza.price} KGS</span>
                 <div>
-                    <button className="btn btn-edit">Edit</button>
+                    <NavLink  to={'/admin/edit' + pizza.id} className="btn btn-edit">Edit</NavLink>
                     <button className="btn btn-delete">Delete</button>
                 </div>
             </div>

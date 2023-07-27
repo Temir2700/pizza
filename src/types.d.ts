@@ -1,4 +1,4 @@
-interface IPizza {
+export interface IPizza {
     id: string;
     image: string;
     title: string;
@@ -6,4 +6,13 @@ interface IPizza {
 }
 export interface IApiPizza {
     [id: string]: IPizza;
+}
+
+export type TApiPizza = Omit<IPizza, 'id'>;
+
+
+export interface IPizzaMutation {
+    image: string;
+    title: string;
+    price: string;
 }
