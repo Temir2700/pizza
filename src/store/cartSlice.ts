@@ -5,10 +5,12 @@ import {ICartPizza, IPizza} from "../types";
 
 interface CartState {
     cart: ICartPizza[];
+    show: boolean;
 }
 
 const initialState: CartState = {
-    cart: []
+    cart: [],
+    show: false,
 };
 
 const cartSlice = createSlice({
@@ -48,6 +50,12 @@ const cartSlice = createSlice({
         clearCart: (state) => {
             state.cart = [];
         },
+        setShow: (state, {payload: boolean}) => {
+            state.show = boolean;
+        },
+        onDelete: (state, {payload: string}) => {
+            state.cart.splice(string, 1);
+        }
     }
 });
 
@@ -56,4 +64,6 @@ export const {
     addPizza,
     updateCart,
     clearCart,
+    setShow,
+    onDelete
 } = cartSlice.actions;

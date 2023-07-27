@@ -213,3 +213,48 @@ body{
 .btn-checkout{
   margin: 0 0 0 40px;
 }
+.backdrop{
+  position: fixed;
+  inset: 0;
+  background-color: rgba(158, 122, 25, 0.8);
+}
+.modal{
+  background-color: #191411;
+  width: 400px;
+  padding: 15px;
+  border-radius: 8px;
+  position: fixed;
+  top: 0;
+  left: -50%;
+  right: -50%;
+  margin: 0 auto;
+}
+.modal-title{
+  margin-bottom: 20px;
+  text-align: center;
+}
+.oneCartPizza{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #9e7a19;
+  margin-bottom: 10px;
+}
+.oneCartPizza-img{
+  width: 65px;
+  height: 65px;
+}
+.modal-btns{
+  display: flex;
+  justify-content: space-around;
+}
+.modal-btn-remove{
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("assets/images/trash.svg");
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
