@@ -16,3 +16,8 @@ export interface IPizzaMutation {
     title: string;
     price: string;
 }
+
+export interface ICartPizza {
+    pizza: IPizza,
+    amount: number
+}

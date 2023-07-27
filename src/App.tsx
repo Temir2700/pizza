@@ -5,10 +5,14 @@ import AdminPage from "./containers/AdminPage/AdminPage";
 import PizzasPage from "./containers/PizzasPage/PizzasPage";
 import PizzaAdd from "./containers/PizzaAdd/PizzaAdd";
 import PizzaEdit from "./containers/PizzaEdit/PizzaEdit";
+import ClientPage from "./containers/ClientPage/ClientPage";
 
 const App = () => {
   return (
     <Routes>
+      <Route path="/" element={(
+          <ClientPage/>
+      )}/>
       <Route path="/admin" element={(
           <AdminPage/>
       )}>

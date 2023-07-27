@@ -172,3 +172,44 @@ body{
 .form-btn:hover{
   background: linear-gradient(95.61deg, #ac6115 0%, #9e7a19 100%);
 }
+.client-page{
+  background-image: url("./assets/images/clientbg.png");
+  background-position: top center;
+  background-size: initial;
+  padding-bottom: 380px;
+}
+.container-inner{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.client-page-title{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.pizza-item-client{
+  cursor: pointer;
+}
+.pizza-item-client:hover{
+  transform: scale(1.06);
+}
+.pizza-item-right-clients{
+  flex-direction: column;
+  width: 250px;
+  text-align: center;
+}
+.pizza-title-clients{
+  margin: 0;
+}
+.pizza-price-clients{
+  margin: 0;
+}
+.cart{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 30px;
+}
+.btn-checkout{
+  margin: 0 0 0 40px;
+}
