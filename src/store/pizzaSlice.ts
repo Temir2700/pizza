@@ -1,6 +1,6 @@
 import {IPizza, IPizzaMutation} from "../types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createPizza, fetchPizza, fetchPizzas, fetchUpdatePizza} from "./pizzaThunk";
+import {createPizza, deletePizza, fetchPizza, fetchPizzas, fetchUpdatePizza} from "./pizzaThunk";
 
 interface PizzasState {
     items: IPizza[];
@@ -9,6 +9,7 @@ interface PizzasState {
     createLoading: boolean;
     fetchOneLoading: boolean;
     updateLoading: boolean;
+    deleteLoading: boolean | string;
 }
 
 const initialState: PizzasState = {
@@ -18,6 +19,7 @@ const initialState: PizzasState = {
     createLoading: false,
     fetchOneLoading: false,
     updateLoading: false,
+    deleteLoading: false,
 };
 
 const pizzasSlice = createSlice( {
@@ -83,6 +85,15 @@ const pizzasSlice = createSlice( {
         });
         builder.addCase(fetchUpdatePizza.rejected, (state) => {
             state.updateLoading = false;
+        });
+        builder.addCase(deletePizza.pending, (state, {meta}) => {
+            state.deleteLoading = meta.arg;
+        });
+        builder.addCase(deletePizza.fulfilled, (state) => {
+            state.deleteLoading = false;
+        });
+        builder.addCase(deletePizza.rejected, (state) => {
+            state.deleteLoading = false;
         });
     }
 });

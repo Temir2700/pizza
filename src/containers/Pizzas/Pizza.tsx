@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from 'react';
 import {useAppDispatch} from "../../app/hook";
 import {useSelector} from "react-redux";
 import {RootState} from "../../app/store";
-import {fetchPizzas} from "../../store/pizzaThunk";
+import {deletePizza, fetchPizzas} from "../../store/pizzaThunk";
 import Spinner from "../../components/Spinner/Spinner";
 import PizzaItem from "./PizzaItem";
 import {IPizza} from "../../types";
@@ -14,20 +14,15 @@ const Pizza = () => {
     const items = useSelector((state: RootState) => state.pizzas.items);
     const pizzasLoading = useSelector((state: RootState) => state.pizzas.fetchLoading);
     const pizza = useSelector((state: RootState) => state.pizzas.onePizza);
+    const deleteLoading = useSelector((state: RootState) => state.pizzas.deleteLoading);
 
+    const removePizza = async (id: string) => {
+        await dispatch(deletePizza(id));
+        await dispatch(fetchPizzas());
+    };
 
-    let pizzas: React.ReactNode = <Spinner/>
-
-    if(!pizzasLoading) {
-        pizzas = items.map((item: IPizza) => (
-            <PizzaItem
-                key={item.id}
-                pizza={item}
-            />
-        ))
-    }
     const checkOnePizza = useCallback(async () => {
-            await dispatch(updateOnePizza());
+        await dispatch(updateOnePizza());
     }, [dispatch]);
 
     useEffect( () => {
@@ -37,6 +32,19 @@ const Pizza = () => {
         }
 
     }, [dispatch, checkOnePizza, pizza]);
+
+    let pizzas: React.ReactNode = <Spinner/>
+
+    if(!pizzasLoading) {
+        pizzas = items.map((item: IPizza) => (
+            <PizzaItem
+                key={item.id}
+                pizza={item}
+                onDelete={() => removePizza(item.id)}
+                deleteLoading={deleteLoading}
+            />
+        ))
+    }
 
     return (
         <>

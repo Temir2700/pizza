@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from "../AdminPage/Header/Header";
 import AdminForm from "../../components/AdminForm/AdminForm";
 import {useAppDispatch} from "../../app/hook";
 import {useNavigate} from "react-router-dom";
@@ -7,6 +6,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../app/store";
 import {TApiPizza} from "../../types";
 import {createPizza} from "../../store/pizzaThunk";
+import MainHeader from "../../components/MainHeader/MainHeader";
 
 const PizzaAdd = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +20,7 @@ const PizzaAdd = () => {
     };
     return (
         <>
-            <Header/>
+            <MainHeader/>
             <div className="admin-page">
                 <div className="container">
                     <h1 className="admin-page-title">Add new Pizza!</h1>

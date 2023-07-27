@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch} from "../../app/hook";
 import {useNavigate, useParams} from "react-router-dom";
-import Header from "../AdminPage/Header/Header";
 import AdminForm from "../../components/AdminForm/AdminForm";
 import {useSelector} from "react-redux";
 import {RootState} from "../../app/store";
 import {fetchPizza, fetchUpdatePizza} from "../../store/pizzaThunk";
 import {TApiPizza} from "../../types";
 import Spinner from "../../components/Spinner/Spinner";
+import MainHeader from "../../components/MainHeader/MainHeader";
 
 const PizzaEdit = () => {
     const dispatch = useAppDispatch();
@@ -28,7 +28,7 @@ const PizzaEdit = () => {
 
     return (
         <>
-            <Header/>
+            <MainHeader/>
             <div className="admin-page">
                 <div className="container">
                     <h1 className="admin-page-title">Edit Pizza!</h1>
