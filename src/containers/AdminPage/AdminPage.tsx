@@ -1,13 +1,18 @@
 import React from 'react';
-import Pizza from "../Pizzas/Pizza";
+import {Outlet} from "react-router-dom";
+import Header from "./Header/Header";
 
 const AdminPage = () => {
     return (
-        <div className="admin-page">
-            <div className="container">
-                <Pizza/>
+        <>
+            <Header/>
+            <div className="admin-page">
+                <div className="container">
+                    <h1 className="admin-page-title">This is an admin page!</h1>
+                </div>
+                <Outlet/>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -31,11 +31,38 @@ body{
   margin-top: 50px;
   margin-bottom: 40px;
 }
+.header{
+  padding: 40px 0;
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo img{
+  vertical-align: bottom;
+}
+.header-btns{
+  display: flex;
+  justify-content: space-between;
+}
+.btn-pizza{
+  text-decoration: none;
+  margin-right: 20px;
+}
+.btn-order{
+  text-decoration: none;
+}
 .admin-page{
   overflow: hidden;
   background-image: url("./assets/images/main_bg.png");
   background-position: top center;
   padding-bottom: 380px;
+}
+.admin-page-title{
+  text-align: center;
 }
 .pizza-admin{
   display: flex;
