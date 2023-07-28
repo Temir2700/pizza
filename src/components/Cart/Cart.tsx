@@ -1,7 +1,7 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hook";
 import ClientModal from "../../containers/ClientModal/ClientModal";
-import {setShow} from "../../store/cartSlice";
+import {clearObject, setShow} from "../../store/cartSlice";
 
 const Cart = () => {
     const cartDishes = useAppSelector((state) => state.cart.cart);
@@ -17,12 +17,17 @@ const Cart = () => {
     if(showState) {
         modal = <ClientModal/>;
     }
+
+    const onCheckout = () => {
+        dispatch(setShow(true));
+        dispatch(clearObject());
+    };
     return (
         <>
             <div className="cart">
                 <div>Total: <strong>{sum}</strong> KGS</div>
                 <div>
-                    <button className="btn btn-checkout" onClick={() => dispatch(setShow(true))}>Checkout</button>
+                    <button className="btn btn-checkout" onClick={onCheckout}>Checkout</button>
                 </div>
             </div>
             {modal}

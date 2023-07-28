@@ -21,3 +21,7 @@ export interface ICartPizza {
     pizza: IPizza,
     amount: number
 }
+
+export interface IOrder {
+    [id: string]: string;
+}

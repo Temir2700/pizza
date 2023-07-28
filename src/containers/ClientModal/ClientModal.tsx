@@ -1,6 +1,7 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from "../../app/hook";
-import {onDelete, setShow} from "../../store/cartSlice";
+import {assignObject, clearCart, onDelete, setShow} from "../../store/cartSlice";
+import {createOrder} from "../../store/cartThunk";
 
 
 const ClientModal = () => {
@@ -21,6 +22,23 @@ const ClientModal = () => {
         }
     };
 
+    const onOrderClick = () => {
+        dispatch(setShow(false));
+
+        cartPizzas.forEach((pizza) => {
+            const amount = pizza.amount
+            const id = pizza.pizza.id;
+
+            const order = {
+                [id]: String(amount),
+            }
+            dispatch(assignObject(order));
+        });
+
+        dispatch(createOrder());
+        dispatch(clearCart());
+    }
+
     return (
         <div className="backdrop">
             <div className="modal">
@@ -39,7 +57,8 @@ const ClientModal = () => {
                         )
                     })}
                 </div>
-                <div>Total: <strong>{sum} KGS</strong></div>
+                <div>Delivery <strong>150</strong> KGS</div>
+                {cartPizzas.length > 0 ? <div>Total: <strong>{sum + 150} KGS</strong></div> : <div>Total: <strong>{sum} KGS</strong></div>}
                 <div className="modal-btns">
                     <button
                         className="btn"
@@ -47,7 +66,7 @@ const ClientModal = () => {
                     >
                         Cancel
                     </button>
-                    <button className="btn">Order</button>
+                    <button className="btn" onClick={onOrderClick}>Order</button>
                 </div>
             </div>
         </div>

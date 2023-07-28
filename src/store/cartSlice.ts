@@ -1,16 +1,21 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ICartPizza, IPizza} from "../types";
+import {ICartPizza, IOrder, IPizza} from "../types";
+import {createOrder} from "./cartThunk";
 
 
 
 interface CartState {
     cart: ICartPizza[];
     show: boolean;
+    createLoading: boolean;
+    newObj: IOrder;
 }
 
 const initialState: CartState = {
     cart: [],
     show: false,
+    createLoading: false,
+    newObj: {}
 };
 
 const cartSlice = createSlice({
@@ -55,7 +60,24 @@ const cartSlice = createSlice({
         },
         onDelete: (state, {payload: string}) => {
             state.cart.splice(string, 1);
+        },
+        assignObject: (state, action) => {
+            Object.assign(state.newObj, action.payload)
+        },
+        clearObject: (state) => {
+            state.newObj = {};
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(createOrder.pending, (state) => {
+            state.createLoading = true;
+        });
+        builder.addCase(createOrder.fulfilled, (state) => {
+            state.createLoading = false;
+        });
+        builder.addCase(createOrder.rejected, (state) => {
+            state.createLoading = false;
+        });
     }
 });
 
@@ -65,5 +87,7 @@ export const {
     updateCart,
     clearCart,
     setShow,
-    onDelete
+    onDelete,
+    assignObject,
+    clearObject
 } = cartSlice.actions;
