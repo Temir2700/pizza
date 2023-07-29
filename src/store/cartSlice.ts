@@ -1,21 +1,28 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {ICartPizza, IOrder, IPizza} from "../types";
-import {createOrder} from "./cartThunk";
+import {createOrder, fetchOrders} from "./cartThunk";
+import {deletePizza} from "./pizzaThunk";
 
 
 
 interface CartState {
     cart: ICartPizza[];
+    allOrders: IOrder[];
+    fetchLoading: boolean;
     show: boolean;
     createLoading: boolean;
-    newObj: IOrder;
+    newObj: IOrder ;
+    deleteLoading: boolean,
 }
 
 const initialState: CartState = {
     cart: [],
+    allOrders: [],
+    fetchLoading: false,
     show: false,
     createLoading: false,
-    newObj: {}
+    newObj: {},
+    deleteLoading: false,
 };
 
 const cartSlice = createSlice({
@@ -34,11 +41,11 @@ const cartSlice = createSlice({
                 });
             }
         },
-        updateCart: (state, { payload: pizzas}: PayloadAction<IPizza[]>) => {
-            const newCart: ICartPizza[] = [];
+        updateCart: (state, { payload: orders}: PayloadAction<IOrder[]>) => {
+            const newCart: IOrder[] = [];
 
-            state.cart.forEach((cartPizza) => {
-                const existingPizza = pizzas.find((pizza) => cartPizza.pizza.id === pizza.id);
+            state.allOrders.forEach((cartPizza) => {
+                const existingPizza = orders.find((pizza) => cartPizza.id === pizza.id);
 
                 if (!existingPizza) {
                     return;
@@ -46,10 +53,9 @@ const cartSlice = createSlice({
 
                 newCart.push({
                     ...cartPizza,
-                    pizza: existingPizza,
                 });
 
-                state.cart = newCart;
+                state.allOrders = newCart;
             });
         },
         clearCart: (state) => {
@@ -69,6 +75,16 @@ const cartSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
+        builder.addCase(fetchOrders.pending, (state) => {
+            state.fetchLoading = true;
+        });
+        builder.addCase(fetchOrders.fulfilled, (state, action) => {
+            state.fetchLoading = false;
+            state.allOrders = action.payload;
+        });
+        builder.addCase(fetchOrders.rejected, (state) => {
+            state.fetchLoading = false;
+        });
         builder.addCase(createOrder.pending, (state) => {
             state.createLoading = true;
         });
@@ -78,13 +94,21 @@ const cartSlice = createSlice({
         builder.addCase(createOrder.rejected, (state) => {
             state.createLoading = false;
         });
+        builder.addCase(deletePizza.pending, (state) => {
+            state.deleteLoading = true;
+        });
+        builder.addCase(deletePizza.fulfilled, (state) => {
+            state.deleteLoading = false;
+        });
+        builder.addCase(deletePizza.rejected, (state) => {
+            state.deleteLoading = false;
+        });
     }
 });
 
 export const cartReducer = cartSlice.reducer;
 export const {
     addPizza,
-    updateCart,
     clearCart,
     setShow,
     onDelete,

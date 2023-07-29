@@ -23,5 +23,17 @@ export interface ICartPizza {
 }
 
 export interface IOrder {
-    [id: string]: string;
+    [id: string]: number;
 }
+
+export interface IApiOrder {
+    [id: string]: IOrder;
+}
+
+export interface IOrderPizzas {
+    title: string;
+    amount: string;
+    price: number;
+    id: string;
+}
+

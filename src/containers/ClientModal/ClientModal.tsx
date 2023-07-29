@@ -30,7 +30,7 @@ const ClientModal = () => {
             const id = pizza.pizza.id;
 
             const order = {
-                [id]: String(amount),
+                [id]: amount,
             }
             dispatch(assignObject(order));
         });

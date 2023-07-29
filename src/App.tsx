@@ -6,6 +6,7 @@ import PizzasPage from "./containers/PizzasPage/PizzasPage";
 import PizzaAdd from "./containers/PizzaAdd/PizzaAdd";
 import PizzaEdit from "./containers/PizzaEdit/PizzaEdit";
 import ClientPage from "./containers/ClientPage/ClientPage";
+import OrdersPage from "./containers/OrdersPage/OrdersPage";
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
       )}>
           <Route path="dishes" element={
               <PizzasPage/>
+          }/>
+          <Route path="orders" element={
+              <OrdersPage/>
           }/>
       </Route>
       <Route path="/admin/new-pizza" element={(

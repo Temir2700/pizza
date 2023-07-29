@@ -258,3 +258,15 @@ body{
   cursor: pointer;
   padding: 10px;
 }
+.order-title{
+  margin: 20px 0;
+  text-align: center;
+}
+.order-item{
+  justify-content: space-around;
+  padding: 20px 0;
+  flex-direction: column;
+}
+.order-item-right{
+  text-align: center;
+}
