@@ -51,10 +51,10 @@ const OrdersPage = () => {
     }
 
     const removeOrder = async (id: string) => {
-        await dispatch(deleteOrder(id));
-        await dispatch(fetchOrders());
-
-        console.log(id);
+        if(window.confirm('Do you want to delete order?')) {
+            await dispatch(deleteOrder(id));
+            await dispatch(fetchOrders());
+        }
     };
 
     return (

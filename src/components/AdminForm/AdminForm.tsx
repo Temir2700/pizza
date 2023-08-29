@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {IPizzaMutation, TApiPizza} from "../../types";
 import BtnSpinner from "../Spinner/BtnSpinner";
+import {useNavigate} from "react-router-dom";
 
 interface Props {
     onSubmit: (newPizza: TApiPizza) => void;
@@ -17,6 +18,7 @@ const initialState = {
 
 const AdminForm: React.FC<Props> = ({onSubmit, isEdit, existingPizza = initialState, isLoading}) => {
     const [newPizza, setNewPizza] = useState(existingPizza);
+    const navigate = useNavigate();
 
     const pizzaChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
         const name = e.target.name;
@@ -39,6 +41,10 @@ const AdminForm: React.FC<Props> = ({onSubmit, isEdit, existingPizza = initialSt
         } else {
             alert('Fill the form!');
         }
+    };
+
+    const onCancelClick = () => {
+        navigate('/admin/dishes');
     };
 
     return (
@@ -83,6 +89,13 @@ const AdminForm: React.FC<Props> = ({onSubmit, isEdit, existingPizza = initialSt
             >
                 {isEdit ? 'Save' : 'Create'}
                 {isLoading && <BtnSpinner/>}
+            </button>
+            <button
+                type="button"
+                className="form-btn"
+                onClick={onCancelClick}
+            >
+                Cancel
             </button>
         </form>
     );

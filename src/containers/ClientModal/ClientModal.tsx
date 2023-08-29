@@ -25,19 +25,24 @@ const ClientModal = () => {
     const onOrderClick = () => {
         dispatch(setShow(false));
 
-        cartPizzas.forEach((pizza) => {
-            const amount = pizza.amount
-            const id = pizza.pizza.id;
 
-            const order = {
-                [id]: amount,
-            }
-            dispatch(assignObject(order));
-        });
+        if(cartPizzas.length !== 0) {
+            cartPizzas.forEach((pizza) => {
+                const amount = pizza.amount
+                const id = pizza.pizza.id;
 
-        dispatch(createOrder());
-        dispatch(clearCart());
-    }
+                const order = {
+                    [id]: amount,
+                }
+                dispatch(assignObject(order));
+            });
+
+            dispatch(createOrder());
+            dispatch(clearCart());
+        } else {
+            alert('Fill the order!');
+        }
+    };
 
     return (
         <div className="backdrop">

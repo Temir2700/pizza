@@ -17,12 +17,14 @@ const Pizza = () => {
     const deleteLoading = useSelector((state: RootState) => state.pizzas.deleteLoading);
 
     const removePizza = async (id: string) => {
-        await dispatch(deletePizza(id));
-        await dispatch(fetchPizzas());
+        if(window.confirm('Do you want to delete pizza?')) {
+            await dispatch(deletePizza(id));
+            await dispatch(fetchPizzas());
+        }
     };
 
     const checkOnePizza = useCallback(async () => {
-        await dispatch(updateOnePizza());
+        dispatch(updateOnePizza());
     }, [dispatch]);
 
     useEffect( () => {
@@ -30,7 +32,6 @@ const Pizza = () => {
         if(pizza !== null) {
             void checkOnePizza();
         }
-
     }, [dispatch, checkOnePizza, pizza]);
 
     let pizzas: React.ReactNode = <Spinner/>
