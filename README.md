@@ -9,7 +9,7 @@ To start the project, you need to do the following:
 
 1) Clone the project to your Github machine with the command:
    
-   `git clone git@github.com:sakutaku/Pizaa-Ordering-App.git`
+   `git clone git@github.com:sakutaku/Pizza-Ordering-App.git`
 
 2) Install dependencies:
 
