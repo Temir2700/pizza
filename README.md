@@ -18,3 +18,7 @@ To start the project, you need to do the following:
 3) Run the project
 
    `npm start`
+
+4) Open website in browser
+   
+   `http://localhost:3000/`
