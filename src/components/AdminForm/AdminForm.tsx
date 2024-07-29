@@ -1,104 +1,107 @@
-import React, {useState} from 'react';
-import {IPizzaMutation, TApiPizza} from "../../types";
+import React, { useState } from "react";
+import { IPizzaMutation, TApiPizza } from "../../types";
 import BtnSpinner from "../Spinner/BtnSpinner";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
-    onSubmit: (newPizza: TApiPizza) => void;
-    isEdit?: boolean;
-    existingPizza?: IPizzaMutation;
-    isLoading?: boolean;
+  onSubmit: (newPizza: TApiPizza) => void;
+  isEdit?: boolean;
+  existingPizza?: IPizzaMutation;
+  isLoading?: boolean;
 }
 
 const initialState = {
-    image: '',
-    title: '',
-    price: ''
+  image: "",
+  title: "",
+  price: "",
 };
 
-const AdminForm: React.FC<Props> = ({onSubmit, isEdit, existingPizza = initialState, isLoading}) => {
-    const [newPizza, setNewPizza] = useState(existingPizza);
-    const navigate = useNavigate();
+const AdminForm: React.FC<Props> = ({
+  onSubmit,
+  isEdit,
+  existingPizza = initialState,
+  isLoading,
+}) => {
+  const [newPizza, setNewPizza] = useState(existingPizza);
+  const navigate = useNavigate();
 
-    const pizzaChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
-        const name = e.target.name;
-        const value = e.target.value;
+  const pizzaChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
-        setNewPizza(prevState => ({
-            ...prevState,
-            [name]: value,
-        }));
-    };
+    setNewPizza((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-    const onFormSubmit =  (e: React.FormEvent) => {
-        e.preventDefault();
+  const onFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-        if(newPizza.image !== ''  && newPizza.title !== '' && newPizza.price !== '') {
-            onSubmit({
-                ...newPizza,
-                price: parseFloat(newPizza.price),
-            });
-        } else {
-            alert('Fill the form!');
-        }
-    };
+    if (
+      newPizza.image !== "" &&
+      newPizza.title !== "" &&
+      newPizza.price !== ""
+    ) {
+      onSubmit({
+        ...newPizza,
+        price: parseFloat(newPizza.price),
+      });
+    } else {
+      alert("Fill the form!");
+    }
+  };
 
-    const onCancelClick = () => {
-        navigate('/admin/dishes');
-    };
+  const onCancelClick = () => {
+    navigate("/admin/dishes");
+  };
 
-    return (
-        <form className="form" onSubmit={onFormSubmit}>
-            <div className="select-wrap">
-                <label htmlFor="title">Title</label>
-                <input
-                    type="text"
-                    name="title"
-                    id="title"
-                    className="input"
-                    value={newPizza.title}
-                    onChange={pizzaChange}
-                />
-            </div>
-            <div className="select-wrap">
-                <label htmlFor="price">Price</label>
-                <input
-                    type="text"
-                    name="price"
-                    id="price"
-                    className="input"
-                    value={newPizza.price}
-                    onChange={pizzaChange}
-                />
-            </div>
-            <div className="select-wrap">
-                <label htmlFor="image">Image</label>
-                <input
-                    type="text"
-                    name="image"
-                    id="image"
-                    className="input"
-                    value={newPizza.image}
-                    onChange={pizzaChange}
-                />
-            </div>
-            <button
-                type="submit"
-                className="form-btn"
-                disabled={isLoading}
-            >
-                {isEdit ? 'Save' : 'Create'}
-                {isLoading && <BtnSpinner/>}
-            </button>
-            <button
-                type="button"
-                className="form-btn"
-                onClick={onCancelClick}
-            >
-                Cancel
-            </button>
-        </form>
-    );
+  return (
+    <form className="form" onSubmit={onFormSubmit}>
+      <div className="select-wrap">
+        <label htmlFor="title">Title</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          className="input"
+          value={newPizza.title}
+          onChange={pizzaChange}
+        />
+      </div>
+      <div className="select-wrap">
+        <label htmlFor="price">Price</label>
+        <input
+          type="text"
+          name="price"
+          id="price"
+          className="input"
+          value={newPizza.price}
+          onChange={pizzaChange}
+        />
+      </div>
+      <div className="select-wrap">
+        <label htmlFor="image">Image</label>
+        <input
+          type="text"
+          name="image"
+          id="image"
+          className="input"
+          value={newPizza.image}
+          onChange={pizzaChange}
+        />
+      </div>
+      <button type="submit" className="form-btn" disabled={isLoading}>
+        {isEdit ? "Save" : "Create"}
+        {isLoading && <BtnSpinner />}
+      </button>
+      <button type="button" className="form-btn" onClick={onCancelClick}>
+        Cancel
+      </button>
+    </form>
+  );
 };
 
 export default AdminForm;

@@ -1,12 +1,12 @@
-import {configureStore} from "@reduxjs/toolkit";
-import {pizzasReducer} from "../store/pizzaSlice";
-import {cartReducer} from "../store/cartSlice";
+import { configureStore } from "@reduxjs/toolkit";
+import { pizzasReducer } from "../store/pizzaSlice";
+import { cartReducer } from "../store/cartSlice";
 
 export const store = configureStore({
-    reducer: {
-        pizzas: pizzasReducer,
-        cart: cartReducer,
-    }
+  reducer: {
+    pizzas: pizzasReducer,
+    cart: cartReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

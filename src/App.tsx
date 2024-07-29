@@ -1,6 +1,6 @@
-import React from 'react';
-import './App.css';
-import {Routes, Route} from "react-router-dom";
+import React from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import AdminPage from "./containers/AdminPage/AdminPage";
 import PizzasPage from "./containers/PizzasPage/PizzasPage";
 import PizzaAdd from "./containers/PizzaAdd/PizzaAdd";
@@ -11,25 +11,13 @@ import OrdersPage from "./containers/OrdersPage/OrdersPage";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={(
-          <ClientPage/>
-      )}/>
-      <Route path="/admin" element={(
-          <AdminPage/>
-      )}>
-          <Route path="dishes" element={
-              <PizzasPage/>
-          }/>
-          <Route path="orders" element={
-              <OrdersPage/>
-          }/>
+      <Route path="/" element={<ClientPage />} />
+      <Route path="/admin" element={<AdminPage />}>
+        <Route path="dishes" element={<PizzasPage />} />
+        <Route path="orders" element={<OrdersPage />} />
       </Route>
-      <Route path="/admin/new-pizza" element={(
-          <PizzaAdd/>
-      )}/>
-     <Route path="admin/edit/:id" element={(
-         <PizzaEdit/>
-     )}/>
+      <Route path="/admin/new-pizza" element={<PizzaAdd />} />
+      <Route path="admin/edit/:id" element={<PizzaEdit />} />
     </Routes>
   );
 };

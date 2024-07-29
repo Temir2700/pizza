@@ -1,39 +1,37 @@
 export interface IPizza {
-    id: string;
-    image: string;
-    title: string;
-    price: number;
+  id: string;
+  image: string;
+  title: string;
+  price: number;
 }
 export interface IApiPizza {
-    [id: string]: IPizza;
+  [id: string]: IPizza;
 }
 
-export type TApiPizza = Omit<IPizza, 'id'>;
-
+export type TApiPizza = Omit<IPizza, "id">;
 
 export interface IPizzaMutation {
-    image: string;
-    title: string;
-    price: string;
+  image: string;
+  title: string;
+  price: string;
 }
 
 export interface ICartPizza {
-    pizza: IPizza,
-    amount: number
+  pizza: IPizza;
+  amount: number;
 }
 
 export interface IOrder {
-    [id: string]: number;
+  [id: string]: number;
 }
 
 export interface IApiOrder {
-    [id: string]: IOrder;
+  [id: string]: IOrder;
 }
 
 export interface IOrderPizzas {
-    title: string;
-    amount: string;
-    price: number;
-    id: string;
+  title: string;
+  amount: string;
+  price: number;
+  id: string;
 }
-
